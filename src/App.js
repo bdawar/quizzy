@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   submitAnswers(e) {
-    console.log("Submitting ...");
+    console.log("Submitting ...", this.state.answers);
     let options = {
       method: "POST",
       body: JSON.stringify(this.state.answers),
@@ -28,7 +28,11 @@ class App extends Component {
     };
     this.doFetch(API_SUBMIT_ENDPOINT, options)
       .then(res => {
-        console.log(res);
+        alert(
+          `Your score:${res.correct * 2}, correct:${res.correct}, incorrect:${
+            res.incorrect
+          }`
+        );
       })
       .catch(err => console.log(err));
   }
@@ -53,7 +57,7 @@ class App extends Component {
           );
         })}
 
-        <button onClick={this.submitAnswer}>Submit</button>
+        <button onClick={this.submitAnswers}>Submit</button>
       </div>
     );
   }
