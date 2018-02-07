@@ -27,8 +27,8 @@ class Option extends Component {
 
   doSelect(e) {
     let answerObj = {};
-    answerObj.q = e.target.name;
-    answerObj.a = e.target.value;
+    answerObj.qno = e.target.name.split("-")[1];
+    answerObj.answer = e.target.value;
     this.props.onSelect(answerObj);
   }
 }

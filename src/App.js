@@ -11,8 +11,9 @@ class App extends Component {
   }
 
   onSelect(answerObj) {
-    console.table(answerObj);
-    //this.setState({ answers: [...this.state.answers, newAnswer] });
+    let newAnswer = this.state.answers;
+    newAnswer[answerObj.qno - 1] = answerObj.answer;
+    this.setState({ answers: newAnswer });
   }
 
   render() {
@@ -43,7 +44,10 @@ class App extends Component {
   componentDidMount() {
     this.doFetch()
       .then(res => {
-        this.setState({ questions: res });
+        this.setState({
+          questions: res,
+          answers: new Array(res.length)
+        });
       })
       .catch(err => console.log(err));
   }
