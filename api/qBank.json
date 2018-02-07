@@ -23,11 +23,11 @@
             "question": "What is the capital city of Gujarat?",
             "answers": [{
                     "value": "a",
-                    "text": "Surat"
+                    "text": "Gandhinagar"
                 },
                 {
                     "value": "b",
-                    "text": "Gandhinagar"
+                    "text": "Surat"
                 },
                 {
                     "value": "c",

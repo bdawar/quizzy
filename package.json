@@ -2,7 +2,7 @@
     "name": "quizzy",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://localhost:3001/",
+    "proxy": "http://localhost:3010/",
     "dependencies": {
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
@@ -13,7 +13,7 @@
         "start-json": "concurrently --kill-others \"yarn json\" \"react-scripts start\"",
         "start:api": "nodemon server.js",
         "start:app": "react-scripts start",
-        "start": "concurrently --kill-others \"yarn start:api\" \"yarn start:app\"",
+        "start": "yarn && concurrently --kill-others \"yarn start:api\" \"yarn start:app\"",
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"

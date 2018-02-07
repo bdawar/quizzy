@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3010;
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -18,7 +18,6 @@ app.post("/submit", (req, res) => {
         correct = correctAnswers.length;
     for (let i = 0, l = submitted.length; i < l; i++) {
         if (submitted[i] !== correctAnswers[i]) {
-            console.log(submitted[i], submitted[i] !== correctAnswers[i]);
             correct--;
         }
     }
