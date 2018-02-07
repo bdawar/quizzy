@@ -1,19 +1,36 @@
 import React, { Component } from "react";
 import QuestionTemplate from "./components/QuestionTemplate";
 import "./App.css";
-import { API_URL } from "./config";
+import { API_FETCH_ENDPOINT, API_SUBMIT_ENDPOINT } from "./config";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { questions: [], answers: [] };
+    this.state = { questions: [{ question: "", answers: [] }], answers: [] };
     this.onSelect = this.onSelect.bind(this);
+    this.submitAnswers = this.submitAnswers.bind(this);
   }
 
   onSelect(answerObj) {
     let newAnswer = this.state.answers;
     newAnswer[answerObj.qno - 1] = answerObj.answer;
     this.setState({ answers: newAnswer });
+  }
+
+  submitAnswers(e) {
+    console.log("Submitting ...");
+    let options = {
+      method: "POST",
+      body: JSON.stringify(this.state.answers),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    };
+    this.doFetch(API_SUBMIT_ENDPOINT, options)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -41,25 +58,23 @@ class App extends Component {
     );
   }
 
-  componentDidMount() {
-    this.doFetch()
-      .then(res => {
-        this.setState({
-          questions: res,
-          answers: new Array(res.length)
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-  doFetch = async () => {
-    const response = await fetch(API_URL);
+  doFetch = async (API, options = {}) => {
+    const response = await fetch(API, options);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
     return body;
   };
 
-  submitAnswers(e) {}
+  componentDidMount() {
+    this.doFetch(API_FETCH_ENDPOINT)
+      .then(res => {
+        this.setState({
+          questions: res.questions,
+          answers: new Array(res.questions.length)
+        });
+      })
+      .catch(err => console.log(err));
+  }
 }
 
 export default App;
