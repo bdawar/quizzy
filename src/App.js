@@ -43,7 +43,7 @@ class App extends Component {
   componentDidMount() {
     this.doFetch()
       .then(res => {
-        this.setState({ questions: res.questions });
+        this.setState({ questions: res });
       })
       .catch(err => console.log(err));
   }
