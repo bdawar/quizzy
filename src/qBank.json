@@ -1,0 +1,63 @@
+{
+    "questions": [{
+            "question": "What is the capital of India?",
+            "answers": [{
+                    "value": "a",
+                    "text": "New Delhi"
+                },
+                {
+                    "value": "b",
+                    "text": "Jaipur"
+                },
+                {
+                    "value": "c",
+                    "text": "Chennai"
+                },
+                {
+                    "value": "a",
+                    "text": "Kolkata"
+                }
+            ]
+        },
+        {
+            "question": "What is the capital city of Gujarat?",
+            "answers": [{
+                    "value": "a",
+                    "text": "Surat"
+                },
+                {
+                    "value": "b",
+                    "text": "Gandhinagar"
+                },
+                {
+                    "value": "c",
+                    "text": "Chennai"
+                },
+                {
+                    "value": "a",
+                    "text": "Kolkata"
+                }
+            ]
+        },
+        {
+            "question": "What is the capital city of Rajasthan?",
+            "answers": [{
+                    "value": "a",
+                    "text": "Jaipur"
+                },
+                {
+                    "value": "b",
+                    "text": "Udaipur"
+                },
+                {
+                    "value": "c",
+                    "text": "Chennai"
+                },
+                {
+                    "value": "a",
+                    "text": "Kolkata"
+                }
+            ]
+        }
+    ]
+}
