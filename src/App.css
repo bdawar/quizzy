@@ -75,3 +75,36 @@ button {
     padding: 5px 10px;
     font-size: 14px;
 }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    background-color: blue;
+    max-width: 200px;
+    min-height: 200px;
+    margin: 0 auto;
+    padding: 30px;
+    position: relative;
+    top: 30%;
+    color: #fff;
+    border: 3px solid;
+}
+
+.modal-title {
+    height: 50px;
+    background-color: #fff;
+    color: blue;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    top: -65px;
+    padding-top: 25px;
+    font-weight: bold;
+}

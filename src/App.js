@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import QuestionTemplate from "./components/QuestionTemplate";
+import AlertModal from "./components/Modal";
 import "./App.css";
 import { API_FETCH_ENDPOINT, API_SUBMIT_ENDPOINT } from "./config";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { questions: [{ question: "", answers: [] }], answers: [] };
+    //initializing the app state
+    this.state = {
+      questions: [{ question: "", answers: [] }],
+      answers: [],
+      isModalOpen: false,
+      result: { correct: 0, incorrect: 0 }
+    };
+    //binding class methods for preserving context
     this.onSelect = this.onSelect.bind(this);
     this.submitAnswers = this.submitAnswers.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
   }
 
   onSelect(answerObj) {
@@ -28,13 +41,19 @@ class App extends Component {
     };
     this.doFetch(API_SUBMIT_ENDPOINT, options)
       .then(res => {
-        alert(
-          `Your score:${res.correct * 2}, correct:${res.correct}, incorrect:${
-            res.incorrect
-          }`
-        );
+        this.showResult(res);
       })
       .catch(err => console.log(err));
+  }
+
+  showResult(res) {
+    this.setState({
+      isModalOpen: true,
+      result: {
+        correct: res.correct,
+        incorrect: res.incorrect
+      }
+    });
   }
 
   render() {
@@ -43,7 +62,6 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title"> General Knowledge _ </h1>
         </header>
-
         {this.state.questions.map((item, idx) => {
           let count = idx + 1;
           return (
@@ -56,8 +74,16 @@ class App extends Component {
             />
           );
         })}
+        <button onClick={this.submitAnswers}> Submit </button>
 
-        <button onClick={this.submitAnswers}>Submit</button>
+        <AlertModal show={this.state.isModalOpen} onClose={this.toggleModal}>
+          {this.state.result.correct * 2}
+          <br />
+          Correct: {this.state.result.correct}
+          <br />
+          Incorrect: {this.state.result.incorrect}
+          <br />
+        </AlertModal>
       </div>
     );
   }
